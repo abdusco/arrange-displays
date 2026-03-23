@@ -100,7 +100,7 @@ guard displayCount >= 2 else {
 
 // 2. Identify MacBook (Internal) and External
 // Note: CGDisplayIsBuiltin is the reliable check here.
-let mainDisplay = displays.first { CGDisplayIsBuiltin($0) != 0 } ?? displays[0]
+let mainDisplay: CGDirectDisplayID = displays.first { CGDisplayIsBuiltin($0) != 0 } ?? displays[0]
 let extDisplay = displays.first { $0 != mainDisplay }!
 
 print("Main (internal) display: \(mainDisplay)")
