@@ -1,6 +1,8 @@
 import Foundation
 import CoreGraphics
 
+let currentVersion = "dev"
+
 enum Direction: String {
     case top
     case bottom
@@ -32,6 +34,12 @@ class CLIArgs {
             return nil
         }
         
+        // Check for version flag
+        if arg == "--version" || arg == "-v" {
+            print("arrange_displays v\(currentVersion)")
+            return nil
+        }
+        
         // Parse direction
         guard let direction = Direction(rawValue: arg) else {
             print("Error: Invalid position '\(arg)'\n")
@@ -44,11 +52,12 @@ class CLIArgs {
     
     static func showHelp() {
         print("""
-        arrange_displays - Arrange external display relative to internal display
+        arrange_displays v\(currentVersion) - Arrange external display relative to internal display
         
         USAGE:
             arrange_displays <position>
             arrange_displays --help
+            arrange_displays --version
         
         POSITIONS:
             top      Place external display above internal display
@@ -57,7 +66,8 @@ class CLIArgs {
             right    Place external display to the right of internal display
         
         OPTIONS:
-            --help, -h   Show this help message
+            --help, -h      Show this help message
+            --version, -v   Show version information
         
         EXAMPLES:
             arrange_displays top
@@ -90,7 +100,7 @@ guard displayCount >= 2 else {
 
 // 2. Identify MacBook (Internal) and External
 // Note: CGDisplayIsBuiltin is the reliable check here.
-let mainDisplay = displays.first { CGDisplayIsBuiltin($0) != 0 } ?? CGMainDisplayID()
+let mainDisplay = displays.first { CGDisplayIsBuiltin($0) != 0 } ?? displays[0]
 let extDisplay = displays.first { $0 != mainDisplay }!
 
 print("Main (internal) display: \(mainDisplay)")

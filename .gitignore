@@ -1,0 +1,7 @@
+# Build artifacts
+arrange_displays
+arrange_displays-*
+ArrangeDisplays.build.swift
+
+# macOS
+.DS_Store

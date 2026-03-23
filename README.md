@@ -4,12 +4,10 @@ A lightweight macOS CLI tool to quickly arrange external displays relative to yo
 
 ## Installation
 
-Download the latest release for your architecture:
-- **Apple Silicon (M1/M2/M3)**: `arrange_displays-arm64`
-- **Intel**: `arrange_displays-x86_64`
+Download the latest release:
 
 ```bash
-# Download and install
+# Download and install (Apple Silicon only)
 curl -L -o /usr/local/bin/arrange_displays https://github.com/abdusco/arrange-displays/releases/latest/download/arrange_displays-arm64
 chmod +x /usr/local/bin/arrange_displays
 ```
